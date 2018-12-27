@@ -45,7 +45,7 @@ class App extends Component {
         try {
             const {slug, url} = this.state;
             const query = this.state.query
-            const response = await fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`);
+            const response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`);
             const data = await response.json();
             const mainData = data.data;
             this.setState({slug: mainData[0].title, url: mainData[0].images.downsized.url});
