@@ -40,22 +40,18 @@ class App extends Component {
 
     getGIY = async(e) => {
         e.preventDefault();
-        console.log(this.state)
+        const { query } = this.state;
 
-        try {
-            const {slug, url} = this.state;
-            const query = this.state.query
-            const response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`);
-            const data = await response.json();
-            const mainData = data.data;
-            this.setState({slug: mainData[0].title, url: mainData[0].images.downsized.url});
-
-            console.log(mainData);
-
-        } catch (error) {
-            console.log(error);
-        }
-
+        await fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`)
+        .then(response => response.json())
+        .then(({ data }) => {
+          this.setState({
+            slug: data[0].title,
+            url: data[0].images.downsized.url
+          });
+        })
+ 
+        .catch(console.log);
     }
 
     render() {
