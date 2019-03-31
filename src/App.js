@@ -50,9 +50,6 @@ class App extends Component {
                         type="text"
                         name="query"
                         onChange={this.onChange}
-                        ref={(input) => {
-                        this.setState._query = input
-                    }}
                         placeholder="Search GIF..."/>
                     <button type="submit" className="btn btn-primary mt-4">Get GIF</button>
                 </form>
