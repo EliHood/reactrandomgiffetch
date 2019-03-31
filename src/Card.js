@@ -1,29 +1,25 @@
-import React, {Component} from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Styles = {
-    width: '300px',
-    height: '300px'
-}
+const styles = {
+  width: "300px",
+  height: "300px"
+};
 
-class Card extends React.Component {
+const Card = ({ title, url }) =>
+  title && url ? ( // if a title and url are passed in, return <div>...</div>, else return "null"
+    <div className="card">
+      <h1>{title}</h1>
+      <div>
+        <img alt="" src={url} styles={styles} />
+      </div>
+    </div>
+  ) : null;
 
-    render() {
-
-        return (
-
-            <div>
-                <h1>{this.props.slug}</h1>
-
-                <div >
-                    <img src={this.props.url}/>
-                </div>
-
-            </div>
-
-        );
-
-    }
-
-}
+// PropTypes will throw a warning if either of them is missing
+PropTypes.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
+};
 
 export default Card;

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Card from './Card';
-import {throws} from 'assert';
+// import {throws} from 'assert';
 
 const Styles = {
     marginTop: '100px',
@@ -24,7 +24,7 @@ class App extends Component {
 
         this.state = {
             query: '',
-            slug: undefined,
+            title: undefined,
             url: undefined
         }
 
@@ -46,7 +46,7 @@ class App extends Component {
         .then(response => response.json())
         .then(({ data }) => {
           this.setState({
-            slug: data[0].title,
+            title: data[0].title,
             url: data[0].images.downsized.url
           });
         })
@@ -74,7 +74,7 @@ class App extends Component {
 
                 </form>
 
-                <Card slug={this.state.slug} url={this.state.url}/>
+                <Card title={this.state.title} url={this.state.url}/>
             </div>
         );
 
