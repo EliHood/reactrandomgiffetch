@@ -19,20 +19,19 @@ describe('Should have h1 title', ()=> {
   })
 })
 
-// describe('Should handle onChange event', ()=> {
-//   it('should handle onChange event', ()=> {
-//     const component = shallow(<App/>)
-//     const form = component.find('input')
 
-//     form.props().onChange({
-//       target:{
-//         title: 'Owl',
-//         query: 'Owl',
-//         url: 'https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif'
-//       }
-//     });
 
-//     expect(component.state('query')).toEqual('Owl')
+describe('Should handle onChange event', ()=> {
+  it('should handle onChange event', ()=> {
+    const component = shallow(<App/>)
+    const form = component.find('input')
+    // target value on App.js 
+    form.props().onChange({
+      target:{
+        value:'Owl'
+      }
+    });
+    expect(component.state('query')).toEqual('Owl')
 
-//   })
-// })
+  })
+})
