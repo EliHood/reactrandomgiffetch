@@ -35,3 +35,11 @@ describe('Should handle onChange event', ()=> {
 
   })
 })
+
+// describe('Should handle getGIF event', ()=> {
+//   it('should handle getGIF event', ()=> {
+//     const component = shallow(<App/>)
+    
+//     // const form 
+//   })
+// })

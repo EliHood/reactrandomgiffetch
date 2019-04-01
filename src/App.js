@@ -48,7 +48,7 @@ class App extends Component {
                         style={Styles.inputStyle}
                         className="form-control"
                         type="text"
-                        name="query"
+                        value={this.state.query}
                         onChange={this.onChange}
                         placeholder="Search GIF..."/>
                     <button type="submit" className="btn btn-primary mt-4">Get GIF</button>
