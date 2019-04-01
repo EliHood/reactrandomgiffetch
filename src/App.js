@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Card from './Card';
 import PropTypes from "prop-types";
+
 const Styles = {
     marginTop: '100px',
     inputStyle: {

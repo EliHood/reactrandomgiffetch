@@ -36,31 +36,35 @@ describe('Should handle onChange event', ()=> {
   })
 })
 
-describe('Should handle getGIF event', ()=> {
-  it('should handle getGIF event', done => {
-    const component = shallow(<App/>)
-    
-    const mockSuccessResponse = {};
-    const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-    const mockQuery = "Owl"
+describe('Should handle getGIF event', () => {
 
-    const mockFetchPromise = Promise.resolve({
-      json:() => mockJsonPromise,
+  let mock, actualFetch;
+  beforeEach(() => {
+    mock = jest.fn();
+    actualFetch = global.fetch;
+    global.fetch = mock;
+  });
+  afterEach(() => {
+    global.fetch = actualFetch;
+  });
 
+  it('should handle getGIF event', async () => {
+    const component = shallow(<App />);
+    const instance = component.instance();
+    component.setState({ query: 'Owl' });
+    mock.mockResolvedValue({ 
+      json: () => Promise.resolve({
+        data: [{
+          title: 'the title',
+          images: { downsized: { url: 'the url' }}
+        }]
+      })
     });
-    jest.spyOn(global, 'fetch').mockImplementation(()=> mockFetchPromise);
-   
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(`http://api.giphy.com/v1/gifs/search?q=${mockQuery}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`);
 
-    process.nextTick(() => { // 6
-      expect(component.state()).toEqual({
-        // ... assert the set state
-      });
+    await instance.getGIY({ preventDefault: () => {} });
 
-      global.fetch.mockClear(); // 7
-      done(); // 8
-    });
-
-  })
-})
+    expect(mock).toHaveBeenCalledWith('http://api.giphy.com/v1/gifs/search?q=Owl&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5');  // Success!
+    expect(component.state('title')).toBe('the title');  // Success!
+    expect(component.state('url')).toBe('the url');  // Success!
+  });
+});
