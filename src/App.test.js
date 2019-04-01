@@ -36,10 +36,31 @@ describe('Should handle onChange event', ()=> {
   })
 })
 
-// describe('Should handle getGIF event', ()=> {
-//   it('should handle getGIF event', ()=> {
-//     const component = shallow(<App/>)
+describe('Should handle getGIF event', ()=> {
+  it('should handle getGIF event', done => {
+    const component = shallow(<App/>)
     
-//     // const form 
-//   })
-// })
+    const mockSuccessResponse = {};
+    const mockJsonPromise = Promise.resolve(mockSuccessResponse);
+    const mockQuery = "Owl"
+
+    const mockFetchPromise = Promise.resolve({
+      json:() => mockJsonPromise,
+
+    });
+    jest.spyOn(global, 'fetch').mockImplementation(()=> mockFetchPromise);
+   
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(global.fetch).toHaveBeenCalledWith(`http://api.giphy.com/v1/gifs/search?q=${mockQuery}&api_key=iBXhsCDYcnktw8n3WSJvIUQCXRqVv8AP&limit=5`);
+
+    process.nextTick(() => { // 6
+      expect(component.state()).toEqual({
+        // ... assert the set state
+      });
+
+      global.fetch.mockClear(); // 7
+      done(); // 8
+    });
+
+  })
+})

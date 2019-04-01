@@ -37,7 +37,10 @@ class App extends Component {
             url: data[0].images.downsized.url
           });
         })
-        .catch(console.log);
+        .catch( (err) =>{
+            console.log(err)
+        });
+   
     }
     render() {
         return (
@@ -62,6 +65,7 @@ PropTypes.propTypes = {
     onChange: PropTypes.func.isRequired,
     getGIY:PropTypes.func.isRequired,
     title:PropTypes.string.isRequired,
-    url:PropTypes.string.isRequired
+    url:PropTypes.string.isRequired,
+    query:PropTypes.string.isRequired
 }
 export default App;
