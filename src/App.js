@@ -42,7 +42,7 @@ class App extends Component {
     render() {
         return (
             <div className="col-md-6 mx-auto" style={Styles}>
-                <h1>Random GIF fetch</h1>
+                <h1 className="gif-title">Random GIF fetch</h1>
                 <form className="form-group" onSubmit={this.getGIY}>
                     <input
                         style={Styles.inputStyle}
