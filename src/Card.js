@@ -18,8 +18,8 @@ const Card = ({ title, url }) =>
 
 // PropTypes will throw a warning if either of them is missing
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  title: PropTypes.string,
+  url: PropTypes.string
 };
 
 export default Card;
