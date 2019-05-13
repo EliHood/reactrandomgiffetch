@@ -17,7 +17,7 @@ const Card = ({ title, url }) =>
   ) : null;
 
 // PropTypes will throw a warning if either of them is missing
-PropTypes.propTypes = {
+Card.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
 };
